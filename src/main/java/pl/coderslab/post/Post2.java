@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 @WebServlet("/Post2")
 public class Post2 extends HttpServlet {
@@ -20,8 +21,23 @@ public class Post2 extends HttpServlet {
         String text = request.getParameter("text");
         String agree = request.getParameter("agree");
 
+        if (!"on".equals(agree)){
+            StringBuilder textCensored = new StringBuilder();
+            StringTokenizer tokenizer = new StringTokenizer(text);
+            while (tokenizer.hasMoreTokens()){
+                String word = tokenizer.nextToken();
+                if (isBadWord(word)){
+                    String stars = getStars(word);
+                    textCensored.append(stars).append(" ");
+                } else  {
+                    textCensored.append(word).append(" ");
+                }
+            }
+            response.getWriter().append(textCensored.toString());
+            return;
+        }
 
-
+    response.getWriter().append(text);
 
     }
 
