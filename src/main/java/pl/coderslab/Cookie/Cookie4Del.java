@@ -7,24 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/delCookie")
-public class Cookie1Del extends HttpServlet {
+@WebServlet("/Cookie4Del")
+public class Cookie4Del extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { response.setContentType("text/html; charset=utf-8");
+
+        String cookieName = request.getParameter("cookieName");
         Cookie[] cookies = request.getCookies();
-        String cookieName = "User";
 
-        if (cookies == null || cookies.length ==0) {
-            response.getWriter().append("brak ciasteczek");
-            return;
-        }
-
-        for (Cookie cookie: cookies) {
+        for (Cookie cookie : cookies) {
             if (cookie.getName().equals(cookieName)) {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
+                response.getWriter().append("ciasteczko usuniete");
             }
         }
+
+
     }
 }
