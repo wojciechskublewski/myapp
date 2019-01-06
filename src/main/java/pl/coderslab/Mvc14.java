@@ -27,6 +27,6 @@ public class Mvc14 extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/form.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsp14.jsp").forward(request, response);
     }
 }

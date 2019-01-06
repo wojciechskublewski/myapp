@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/Mvc13">
+<form method="post">
     <label> Tytul:<input type="text" name="title">
     </label>
     <label> Author:<input type="text" name="author">
